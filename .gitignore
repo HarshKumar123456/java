@@ -1,0 +1,8 @@
+# To ignore Configurations of the Eclipse Editor
+.metadata/
+
+# To ignore the VS Code Configuration Settings
+.vscode/
+
+# To ignore the Compiled Files of the Java (And Yes I said Compiled Because Java Compiler first Compile and then During the Execution JVM's JIT Compiler i.e. Just In Time Compiler Interprets and Executes the Code So Java is Compiled and Interpreted Both at the Same Time But the .class files contains the Compiled ByteCode thus I said Compiled files of Java in the Beginning)
+*.class
