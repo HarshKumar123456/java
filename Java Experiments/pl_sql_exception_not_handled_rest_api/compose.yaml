@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: plsql_experiment_db
+    environment:
+      POSTGRES_DB: student_db
+      POSTGRES_USER: mera_username
+      POSTGRES_PASSWORD: mera_password
+    ports:
+      - "5432:5432"
+    volumes:
+      # 1. Mount the internal volume name to the postgres data folder
+      - pgdata:/var/lib/postgresql/data
+      # 2. Mount your local initialization script
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+# 3. Define and give the custom name to the volume here
+volumes:
+  pgdata:
+    name: plsql_experiment_db_volume
