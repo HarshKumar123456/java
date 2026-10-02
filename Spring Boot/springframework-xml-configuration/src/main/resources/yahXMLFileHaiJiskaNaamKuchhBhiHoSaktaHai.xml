@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- Without Argument Constructor ke banana ho to ye chalega -->
+    <!-- <bean id="mobileKaIdWalaNaamXMLConfigKeAndar" class="com.harsh.Mobile" /> -->
+    
+    <!-- Ye Rahi apni Mobile ki Bean -->
+
+    <!-- Autowire bhi kar sakte hain ismein bhi with the help of the attribute autowire="byType" -->
+    <!-- Primary bean declare kar sakte hain jabhi bhi hamare paas do same type ki bean definitions available hon using attribute primary="true" -->
+    <!-- Jab ham chahte hon ki bean jab actual mein code mein kahin use ho rahi ho tabhi load ho to ham log lazy loading wala scene bhi implement kar sakte hain using attribute lazy-init="true" -->
+
+    <bean id="mobileKaIdWalaNaamXMLConfigKeAndar" class="com.harsh.Mobile">
+        <!-- Yahan par constructor args by default sequence ko follow karte hain in the constrcutor but ham log name aur index wala scene bhi use kar sakte hain and same goes with property in setter injection -->
+
+        <!-- Basically ye Constructor Injection hai samjhe -->
+        <constructor-arg ref="defaultSimKaIdWalaNaamXMLConfigKeAndar"/>
+
+        <!-- Basically ye Setter Injection hai samjhe -->
+        <!-- Dekho Setter injection agar rahega to phir constructor ke madhyam se property set hogi aur phir apna Setter ke madhyam se to last mein Setter Injection wali milegi baad mein setter ka use karke change bhi kar sakte hain samjhe -->
+        <property name="sim" ref="simKaIdWalaNaamXMLConfigKeAndar"/>
+
+        <!-- Ye jo upar ki property hai yaani ki Setter Injection isko ham log aise bhi likh sakte hain aur isko hi Java XML Configuration ke shastron mein Inner Bean Kaha gaya hai -->
+        <!-- 
+        <property name="sim">
+            <bean id="innerBeanWaliSimKaNaamXMLConfigurationKeAndar" class="com.harsh.BSNL">
+            </bean>
+        </property> 
+        -->
+    </bean>
+
+    <!-- Ye Rahi apni Sim ki Bean -->
+    <!-- Scope jo hai vo Prototype karne se kya hoga ki bhai har baar ek naya object banega getBean Karne par samjhe -->
+    <!-- <bean id="defaultSimKaIdWalaNaamXMLConfigKeAndar" class="com.harsh.BSNL" scope="prototype" /> -->
+    <!-- By Default Scope jo hai singleton hi rahta hai bhai samjhe -->
+    <bean id="defaultSimKaIdWalaNaamXMLConfigKeAndar" class="com.harsh.BSNL" scope="singleton" primary="true" />
+    <bean id="sarkariSimKaIdWalaNaamXMLConfigKeAndar" class="com.harsh.BSNL"/>
+    <bean id="nayiSimKaIdWalaNaamXMLConfigKeAndar" class="com.harsh.Vi"/>
+    <bean id="simKaIdWalaNaamXMLConfigKeAndar" class="com.harsh.Airtel"/>
+
+</beans>
